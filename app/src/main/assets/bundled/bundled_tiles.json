@@ -4,60 +4,70 @@
         /* Use this URL to ensure users see the best formatted website. */
         "url": "https://ftv.cdn.mozilla.net/ytht",
         "title": "YouTube",
-        "img": "tile_youtube.png"
+        "img": "tile_youtube.png",
+        "visits": 25
     },
     {
         "id": "googleVideo",
         "url": "https://www.google.com/webhp?tbm=vid",
         "title": "Video Search",
-        "img": "tile_google.png"
+        "img": "tile_google.png",
+        "visits": 50
     },
     {
         "id": "imdb",
         "url": "https://imdb.com/",
         "title": "IMDB",
-        "img": "tile_imdb.png"
+        "img": "tile_imdb.png",
+        "visits": 12
     },
     {
         "id": "rottenTomatoes",
         "url": "https://www.rottentomatoes.com/",
         "title": "Rotten Tomatoes",
-        "img": "tile_rotten_tomatoes.png"
+        "img": "tile_rotten_tomatoes.png",
+        "visits": 1
     },
     {
         "id": "metacritic",
         "url": "http://metacritic.com/",
         "title": "metacritic",
-        "img": "tile_metacritic.png"
+        "img": "tile_metacritic.png",
+        "visits": 11
     },
     {
         "id": "fandango",
         "url": "https://www.fandango.com/",
         "title": "Fandango",
-        "img": "tile_fandango.png"
+        "img": "tile_fandango.png",
+        "visits": 0
     },
     {
         "id": "hollywoodReporter",
         "url": "https://hollywoodreporter.com/",
         "title": "Hollywood Reporter",
-        "img": "tile_hollywood_reporter.png"
+        "img": "tile_hollywood_reporter.png",
+        "visits": 0
     },
     {
         "id": "flickr",
         "url": "https://flickr.com/",
         "title": "Flickr",
-        "img": "tile_flickr.png"
+        "img": "tile_flickr.png",
+        "visits": 2
     },
     {
         "id": "instagram",
         "url": "https://instagram.com/",
         "title": "Instagram",
-        "img": "tile_instagram.png"
+        "img": "tile_instagram.png",
+        "visits": 3
     },
     {
         "id": "pinterest",
         "url": "https://pinterest.com/",
         "title": "Pinterest",
-        "img": "tile_pinterest.png"
+        "img": "tile_pinterest.png",
+        "visits": 3
     }
 ]
