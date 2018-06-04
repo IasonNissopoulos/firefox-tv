@@ -56,11 +56,22 @@ class BundledTilesManager private constructor(context: Context) {
         val tilesJSONArray = JSONArray(tilesJSONString)
         val lhm = LinkedHashMap<Uri, BundledHomeTile>(tilesJSONArray.length())
         val blacklist = loadBlacklist(context)
+        var sortedTilesList = orderTiles(tilesJSONArray, lhm)
         for (i in 0 until tilesJSONArray.length()) {
             val tile = BundledHomeTile.fromJSONObject(tilesJSONArray.getJSONObject(i))
-            if (!blacklist.contains(tile.id)) {
-                lhm.put(tile.url.toUri()!!, tile)
-            }
+            var j = 0
+            var sameTiles = false
+            do{
+                if(tile.id == sortedTilesList[j]){
+                        sameTiles = true
+
+                    if (!blacklist.contains(tile.id)) { //&&tile.id ==
+                        lhm.put(tile.url.toUri()!!, tile)
+                    }
+                }
+            } while(!sameTiles);
+
+
         }
         return lhm
     }
@@ -206,6 +217,36 @@ class CustomTilesManager private constructor(context: Context) {
 private fun getHomeTilesPreferences(context: Context): SharedPreferences {
     return context.getSharedPreferences(PREF_HOME_TILES, MODE_PRIVATE)
 }
+
+/**
+ * Gets tile.id,tile.visits for every tile and places the tiles' id in order, based on visits.
+ * @return an array with the tile.id in order
+ */
+private fun orderTiles(tilesJSONArray : JSONArray, lhm: LinkedHashMap<Uri, BundledHomeTile>) : Array<String> {
+    val arraySize = tilesJSONArray.length()
+    val visitsArray = IntArray(arraySize)
+    val orderedIDs = Array<String>(arraySize){ "" }
+    for (i in 0 until arraySize){
+        val tile = BundledHomeTile.fromJSONObject(tilesJSONArray.getJSONObject(i))
+        orderedIDs[0] = tile.id
+        visitsArray[0] = tile.visits
+
+    }
+    var swappedElements : Boolean
+    do {
+        swappedElements = false
+
+        for (i in 0..arraySize - 2){
+            val tile = BundledHomeTile.fromJSONObject(tilesJSONArray.getJSONObject(i))
+            if (tile.id > orderedIDs[i + 1]) {
+                orderedIDs[i] = orderedIDs[i+1].also { orderedIDs[i+1] = orderedIDs[i] }
+                visitsArray[i] = visitsArray[i+1].also {visitsArray[i+1] = visitsArray[i]}
+                swappedElements = true;
+            }
+        }
+    } while (swappedElements);
+    return orderedIDs;
+    }
 
 class HomeTilesManager {
     companion object {
